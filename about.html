@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<!--เมนู-->
+<div id="menu-container"></div>
+
+<!--เนื้อหา-->
+    <div class="container">
+        <div class="alert alert-success mt-4" role="alert">
+            Hello Gun
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+
+                <!--form-->
+                <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                
+                    <div class="mb-3">
+                        <label class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tel.</label>
+                        <input type="text" class="form-control" id="tel" placeholder="ex:xxx-xxx-xxxx" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Example textarea</label>
+                        <textarea class="form-control" id="detail" rows="3" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button type="reset" class="btn btn-danger">Cancle</button>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="col-md-6">
+
+                <img src="img/mt.jpg" class="img-fluid rounded" height="500">
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
+<script src="js/bootstrap.bundle.min.js"></script>
+
+<script src="js/menu.js"></script>
