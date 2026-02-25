@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>ตะกร้าสินค้า</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<!--menu-->
+<div id="menu-container"></div><br>
+
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-body">
+
+      <h3 class="mb-4">🛒 ตะกร้าสินค้า</h3>
+
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle text-center">
+          <thead class="table-primary">
+            <tr>
+              <th>สินค้า</th>
+              <th>ราคา</th>
+              <th width="180">จำนวน</th>
+              <th>รวม</th>
+              <th>ลบ</th>
+            </tr>
+          </thead>
+          <tbody id="cartTable">
+            <tr>
+              <td class="text-start">
+                <strong>iPhone 15</strong><br>
+                <small class="text-muted">Apple</small>
+              </td>
+              <td class="price">35000</td>
+              <td>
+                <div class="d-flex justify-content-center">
+                  <button class="btn btn-sm btn-outline-secondary minus">−</button>
+                  <input type="text" class="form-control text-center mx-2 qty" value="1" style="width:60px;">
+                  <button class="btn btn-sm btn-outline-secondary plus">+</button>
+                </div>
+              </td>
+              <td class="subtotal">35000</td>
+              <td>
+                <button class="btn btn-sm btn-danger remove">✕</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="text-start">
+                <strong>AirPods Pro</strong><br>
+                <small class="text-muted">Apple</small>
+              </td>
+              <td class="price">8900</td>
+              <td>
+                <div class="d-flex justify-content-center">
+                  <button class="btn btn-sm btn-outline-secondary minus">−</button>
+                  <input type="text" class="form-control text-center mx-2 qty" value="2" style="width:60px;">
+                  <button class="btn btn-sm btn-outline-secondary plus">+</button>
+                </div>
+              </td>
+              <td class="subtotal">17800</td>
+              <td>
+                <button class="btn btn-sm btn-danger remove">✕</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-6"></div>
+
+        <div class="col-md-6">
+          <div class="border rounded p-3 bg-white">
+            <h5>สรุปคำสั่งซื้อ</h5>
+            <hr>
+
+            <div class="d-flex justify-content-between">
+              <span>ราคารวม</span>
+              <strong id="totalPrice">52800</strong> บาท
+            </div>
+
+            <button class="btn btn-primary w-100 mt-3">
+              ดำเนินการชำระเงิน
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function updateTotals() {
+  let total = 0;
+
+  document.querySelectorAll("#cartTable tr").forEach(row => {
+    const price = parseFloat(row.querySelector(".price").innerText);
+    const qtyInput = row.querySelector(".qty");
+    const qty = parseInt(qtyInput.value) || 0;
+
+    const subtotal = price * qty;
+    row.querySelector(".subtotal").innerText = subtotal.toLocaleString();
+
+    total += subtotal;
+  });
+
+  document.getElementById("totalPrice").innerText = total.toLocaleString();
+}
+
+document.querySelectorAll(".plus").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const qtyInput = btn.parentElement.querySelector(".qty");
+    qtyInput.value = parseInt(qtyInput.value) + 1;
+    updateTotals();
+  });
+});
+
+document.querySelectorAll(".minus").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const qtyInput = btn.parentElement.querySelector(".qty");
+    let qty = parseInt(qtyInput.value);
+    if (qty > 1) qtyInput.value = qty - 1;
+    updateTotals();
+  });
+});
+
+document.querySelectorAll(".remove").forEach(btn => {
+  btn.addEventListener("click", () => {
+    btn.closest("tr").remove();
+    updateTotals();
+  });
+});
+
+document.querySelectorAll(".qty").forEach(input => {
+  input.addEventListener("input", updateTotals);
+});
+
+updateTotals();
+</script>
+
+</body>
+</html>
+<script src="js/bootstrap.bundle.min.js"></script>
+
+<script src="js/menu.js"></script>
